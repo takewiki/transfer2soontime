@@ -1,4 +1,4 @@
-create or replace view tk_v_trans2so  as 
+create or replace view tk_v_trans2so_rt  as 
 select 
 o.fname as FSaleOrgName,
 a.fid,
@@ -6,7 +6,7 @@ a.FBILLNO,
 b.fname as FBillTypeName,
 '已审核' as FBillCheckStatus,
 a.FDATE,
-'普通' as FTransferDirect,
+'退货' as FTransferDirect,
 d.fname as FSaleDeptName,
 s.fname as FSaleManName,
 ad.FDATAVALUE as FPreOrderContact
@@ -26,7 +26,7 @@ on a.F_PAEZ_ASSISTANT=ad.FENTRYID
 where o.flocaleid=2052
 and b.fbilltypeid='59ccaf279ce132'
 and a.FDOCUMENTSTATUS='C'
-and a.FTRANSFERDIRECT='GENERAL'
+and a.FTRANSFERDIRECT='RETURN'
 and d.FLOCALEID=2052
 and  s.flocaleid=2052
 and ad.FLOCALEID=2052;
