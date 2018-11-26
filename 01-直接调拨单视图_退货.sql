@@ -6,7 +6,7 @@ a.FBILLNO,
 b.fname as FBillTypeName,
 '已审核' as FBillCheckStatus,
 a.FDATE,
-'退货' as FTransferDirect,
+'退货' as FTransferDirect, --退货
 d.fname as FSaleDeptName,
 s.fname as FSaleManName,
 ad.FDATAVALUE as FPreOrderContact
