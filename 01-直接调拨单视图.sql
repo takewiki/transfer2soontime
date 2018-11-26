@@ -1,3 +1,4 @@
+create or replace view tk_v_trans2so  as 
 select 
 o.fname as FSaleOrgName,
 a.fid,
@@ -8,7 +9,7 @@ a.FDATE,
 '普通' as FTransferDirect,
 d.fname as FSaleDeptName,
 s.fname as FSaleManName,
-a.F_PAEZ_ASSISTANT
+ad.FDATAVALUE as FPreOrderContact
 from T_STK_STKTRANSFERIN  a
 inner join T_ORG_ORGANIZATIONS_L o  ---组织表
 on a.FSALEORGID = o.FORGID
@@ -20,9 +21,12 @@ left join T_BD_OPERATORENTRY op
 on a.FSALERID=op.FENTRYID
 inner join T_BD_STAFF_L s
 on op.FSTAFFID=s.FSTAFFID
+left join T_BAS_ASSISTANTDATAENTRY_L ad
+on a.F_PAEZ_ASSISTANT=ad.FENTRYID
 where o.flocaleid=2052
 and b.fbilltypeid='59ccaf279ce132'
 and a.FDOCUMENTSTATUS='C'
 and a.FTRANSFERDIRECT='GENERAL'
 and d.FLOCALEID=2052
-and  s.flocaleid=2052;
+and  s.flocaleid=2052
+and ad.FLOCALEID=2052;
